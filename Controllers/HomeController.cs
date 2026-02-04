@@ -15,7 +15,7 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public string Index()
+    public IActionResult Index()
     {
         {
     var path = Path.Combine(
@@ -37,7 +37,7 @@ public class HomeController : Controller
         sb.AppendLine(product.Cost.ToString());
         sb.AppendLine(); 
     }
-    return sb.ToString();
+    return View();
     }
     }
 
