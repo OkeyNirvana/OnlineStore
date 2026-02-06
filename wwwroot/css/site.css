@@ -29,3 +29,10 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.product-img {
+  height: 100px;          /* фиксируем высоту области */
+  width: 100%;
+  object-fit: contain;    /* не растягивать, а вписать */
+  background-color: #fff; /* как в магазинах */
+  padding: 10px;
+}

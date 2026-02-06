@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using OnlineStore.Models;
 using System.Text.Json;
 using System.Text;
+using HobbyGarage.Models;
+using HobbyGarage.Repository;
 
-namespace OnlineStore.Controllers;
+
+namespace HobbyGarage.Controllers;
 
 public class HomeController : Controller
 {
@@ -17,29 +19,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        {
-    var path = Path.Combine(
-        Directory.GetCurrentDirectory(),
-        "data",
-        "Products.json"
-    );
-
-    var json = System.IO.File.ReadAllText(path);
-
-    var products = JsonSerializer.Deserialize<List<Product>>(json);
-
-    var sb = new StringBuilder();
-
-    foreach (var product in products)
-    {
-        sb.AppendLine(product.Id.ToString());
-        sb.AppendLine(product.Name);
-        sb.AppendLine(product.Cost.ToString());
-        sb.AppendLine(); 
+        var products = RepositoryProduct.GetAll();
+        
+ 
+    return View(products);
     }
-    return View();
-    }
-    }
+    
 
     public IActionResult Privacy()
     {

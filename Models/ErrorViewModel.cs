@@ -1,4 +1,4 @@
-namespace OnlineStore.Models;
+namespace HobbyGarage.Models;
 
 public class ErrorViewModel
 {

@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineStore.Controllers;
+namespace HobbyGarage.Controllers;
 
-public class Contact : Controller
+public class ContactController : Controller
 {
   // GET
   public IActionResult Index()
