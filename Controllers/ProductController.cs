@@ -6,15 +6,11 @@ namespace HobbyGarage.Controllers;
 public class ProductController : Controller
 {
   // GET
-  public string Index(int id)
+  public IActionResult Index(int id)
   {
     var product = RepositoryProduct.TryGetById(id);
-
-    if (product == null)
-    {
-      return $"Товар с id = {id} не найден";
-    }
-    return $"{product}{Environment.NewLine}{product.Description}";
+    
+    return View(product);
   }
 
   public IActionResult Add(string name, decimal cost, string discription)
