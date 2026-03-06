@@ -11,15 +11,18 @@ namespace HobbyGarage.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IRepositoryProduct _repositoryProduct;
+    
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController (IRepositoryProduct repositoryProduct, ILogger<HomeController> logger)
     {
+        _repositoryProduct = repositoryProduct;
         _logger = logger;
     }
 
     public IActionResult Index()
     {
-        var products = RepositoryProduct.GetAll();
+        var products = _repositoryProduct.GetAll();
         
  
     return View(products);

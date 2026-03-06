@@ -22,7 +22,27 @@
                             <td class="fw-bold">@(i+1)</td>
                             <td align="left">@Model.Items[i].Product.Name</td>
                             <td align="left">@Model.Items[i].Product.Cost.ToString("c")</td>
-                            <td>@Model.Items[i].Quantity</td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                    <a class="btn btn-sm btn-outline-danger"
+                                       asp-controller="Cart"
+                                       asp-action="RemoveQuantity"
+                                       asp-route-productId="@Model.Items[i].Product.Id">
+                                        -
+                                    </a>
+
+                                    <span class="fw-bold">@Model.Items[i].Quantity</span>
+
+                                    <a class="btn btn-sm btn-outline-success"
+                                       asp-controller="Cart"
+                                       asp-action="AddQuantity"
+                                       asp-route-productId="@Model.Items[i].Product.Id">
+                                        +
+                                    </a>
+
+                                </div>
+                            </td>
                             <td class="fw-bold">@Model.Items[i].Cost?.ToString("c")</td>
                         </tr>
                     }

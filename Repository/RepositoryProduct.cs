@@ -3,22 +3,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyGarage.Repository
 {
-  public class RepositoryProduct
+  public interface IRepositoryProduct
+  {
+    public List<Product> GetAll();
+    public Product TryGetById(int id);
+    public void Add(string name, decimal cost, string discription);
+  }
+  public class RepositoryProduct : IRepositoryProduct
   {
     private static int _instanceCounter = 0;
 
-    private static List<Product> _products = new List<Product>
+    private List<Product> _products = new List<Product>
     {
-        new Product(++_instanceCounter, "Phone", 100, "Описание 1"),
-        new Product(++_instanceCounter, "Laptop", 500, "Описание 2"),
-        new Product(++_instanceCounter, "Tablet", 300, "Описание 3"),
-        new Product(++_instanceCounter, "Phone", 100, "Описание 4"),
-        new Product(++_instanceCounter, "Laptop", 500, "Описание 5"),
-        new Product(++_instanceCounter, "Tablet", 300, "Описание 6")
+        new Product(++_instanceCounter, "Какя то хуйня", 100, "Описание 1"),
+        new Product(++_instanceCounter, "Еще одна хуйня", 500, "Описание 2"),
+        new Product(++_instanceCounter, "Очередная хуета", 300, "Описание 3"),
+        new Product(++_instanceCounter, "Шляпа", 100, "Описание 4"),
+        new Product(++_instanceCounter, "Какая то шляпа", 500, "Описание 5"),
+        new Product(++_instanceCounter, "Еще шляпа", 300, "Описание 6")
     };
-    public static List<Product> GetAll() => _products;
+    public List<Product> GetAll() => _products;
     
-    public static Product TryGetById(int id)
+    public Product TryGetById(int id)
     {
       foreach (var product in _products)
       {
@@ -29,7 +35,7 @@ namespace HobbyGarage.Repository
       return null;
     }
 
-    public static void Add(string name, decimal cost, string discription)
+    public void Add(string name, decimal cost, string discription)
     {
       var product = new Product(++_instanceCounter, name, cost, discription);
       _products.Add(product);

@@ -1,14 +1,23 @@
 namespace HobbyGarage.Models;
 
-public class CartRepository
+public interface ICartRepository
 {
-  public static List<Cart> _carts = [];
-  public static Cart? TryGetByUserId(string userid)
+  public Cart? TryGetByUserId(string userid);
+  public void Add(Product product, string userId);
+  public void AddQuantity(string userid, int puductid);
+  public void RemoveQuantity(string userid, int productid);
+
+}
+
+public class CartRepository : ICartRepository
+{
+  public  List<Cart> _carts = [];
+  public Cart? TryGetByUserId(string userid)
   {
     return _carts.FirstOrDefault(cart => cart.UserId == userid);
   }
   
-  public static void Add(Product product, string userId)
+  public void Add(Product product, string userId)
   {
     var existingCart = TryGetByUserId(userId);
 
@@ -49,6 +58,27 @@ public class CartRepository
         existingCartItem.Quantity++;
       }
     }
+  }
+
+  public void AddQuantity(string userId, int productid)
+  {
+    var existingCart = TryGetByUserId(userId);
+    if (existingCart == null) return;
+    var existingCartItem = existingCart.Items.FirstOrDefault(item =>
+        item.Product.Id == productid);
+    existingCartItem.Quantity++;
+
+  }
+
+  public void RemoveQuantity(string userid, int productid)
+  {
+    var existingCart = TryGetByUserId(userid);
+    if (existingCart == null) return;
+    var existingCartItem = existingCart.Items.FirstOrDefault(item =>
+        item.Product.Id == productid);
+    if (existingCartItem.Quantity > 0) existingCartItem.Quantity--;
+    if (existingCartItem.Quantity == 0) existingCart.Items.Remove(existingCartItem);
+    
   }
 }
 
