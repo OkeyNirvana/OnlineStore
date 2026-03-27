@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IRepositoryProduct, RepositoryProduct>();
 builder.Services.AddSingleton<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
-
+builder.Services.AddSingleton<IFavoriteRepository, FavoriteRepository>();
 
 var app = builder.Build();
 
