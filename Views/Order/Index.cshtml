@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Оформление заказа";
 }
-
+<form method="post">
 <div class="text-center text-uppercase text-success mb-5 mt-5">
     <h2 class="row-title">Оформление заказа</h2>
 </div>
@@ -23,15 +23,15 @@
                         <td class="w-50 p-4">
                             <p>
                                 <label>Имя</label><br />
-                                <input type="text" class="w-100" />
+                                <input type="text" class="w-100" name="name" />
                             </p>
                             <p>
                                 <label>Адрес доставки</label><br />
-                                <input type="text" class="w-100" />
+                                <input type="text" class="w-100" name="address"/>
                             </p>
                             <p>
                                 <label>Телефон</label><br />
-                                <input type="tel" class="w-100" />
+                                <input type="tel" class="w-100" name="phone"/>
                             </p>
                         </td>
 
@@ -76,11 +76,11 @@
     </div>
 
     <div class="text-center">
-        <a class="btn btn-outline-danger"
+        <button type="submit" class="btn btn-outline-danger"
            asp-controller="Order"
            asp-action="Buy">
             Оплатить заказ
-        </a>
+        </button>
     </div>
 }
 else
@@ -97,3 +97,4 @@ else
         Продолжить покупки
     </a>
 </div>
+</form>

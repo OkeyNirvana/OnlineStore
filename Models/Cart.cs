@@ -7,6 +7,7 @@ public class Cart
   public string? UserId;
   public Guid Id;
   public decimal? TotalCost => Items.Sum(item => item.Cost);
+  public int Quantity => Items.Sum(item => item.Quantity);
 
 }
 

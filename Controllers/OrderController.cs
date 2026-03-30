@@ -21,8 +21,8 @@ public class OrderController : Controller
     var _cart = _cartRepository.TryGetByUserId(Constans.UserId);
     return View(_cart);
   }
-
-  public IActionResult Buy()
+[HttpPost]
+  public IActionResult Buy(DevileryInfo devilery)
   {
     var _cart = _cartRepository.TryGetByUserId(Constans.UserId);
     var newOrder = new Order()
