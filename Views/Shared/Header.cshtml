@@ -20,10 +20,13 @@
                             Избранное
                         </a>
                     </li>
-
                     <li class="nav-item">
                         @await Component.InvokeAsync("Cart")
                     </li>
+                    <a asp-controller="Account" asp-action="Login"
+                       class="d-flex align-items-center text-dark text-decoration-none">
+                        <span>Вход</span>
+                    </a>
                 </ul>
             </div>
         </div>
