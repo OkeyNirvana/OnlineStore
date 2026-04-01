@@ -16,7 +16,7 @@ public class AccountController : Controller
     return View();
   }
   [HttpGet]
-  public IActionResult Registration(Registration registration)
+  public IActionResult Registration()
   {
     return View();
   }

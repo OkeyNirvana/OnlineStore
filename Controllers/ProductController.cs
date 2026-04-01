@@ -11,19 +11,11 @@ public class ProductController : Controller
   {
     _repositoryProduct = repositoryProduct;
   }
+
   public IActionResult Index(int id)
   {
     var product = _repositoryProduct.TryGetById(id);
-    
+
     return View(product);
-  }
-
-  public IActionResult Add(string name, decimal cost, string discription)
-  {
-    _repositoryProduct.Add(name, cost, discription);
-    var product = _repositoryProduct.GetAll();
-
-    return RedirectToAction("Index","Home");
-    //return View("../Home/Index", product);
   }
 }

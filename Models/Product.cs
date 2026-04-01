@@ -12,6 +12,9 @@ public class Product
 
     public string PhotoPath = "/img/cart.png";
     
+    public Product()
+    { }
+    
     public Product(int id, string name, decimal cost, string description)
     {
         Id = id;

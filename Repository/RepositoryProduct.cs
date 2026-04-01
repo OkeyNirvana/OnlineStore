@@ -7,7 +7,8 @@ namespace HobbyGarage.Repository
   {
     public List<Product> GetAll();
     public Product TryGetById(int id);
-    public void Add(string name, decimal cost, string discription);
+    public void Add(Product product);
+    public void DeleteProduct(int productid);
   }
   public class RepositoryProduct : IRepositoryProduct
   {
@@ -22,6 +23,8 @@ namespace HobbyGarage.Repository
         new Product(++_instanceCounter, "Какая то шляпа", 500, "Описание 5"),
         new Product(++_instanceCounter, "Еще шляпа", 300, "Описание 6")
     };
+
+    private IRepositoryProduct _repositoryProductImplementation;
     public List<Product> GetAll() => _products;
     
     public Product TryGetById(int id)
@@ -35,11 +38,16 @@ namespace HobbyGarage.Repository
       return null;
     }
 
-    public void Add(string name, decimal cost, string discription)
+    public void Add(Product product)
     {
-      var product = new Product(++_instanceCounter, name, cost, discription);
+      product.Id = ++_instanceCounter;
       _products.Add(product);
     }
 
+    public void DeleteProduct(int productid)
+    {
+      var product = TryGetById(productid);
+      _products.Remove(product);
+    }
   }
 }
