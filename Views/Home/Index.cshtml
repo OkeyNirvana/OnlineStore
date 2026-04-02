@@ -1,33 +1,14 @@
-﻿@model List<Product> 
+﻿@model List<Product>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Главная";
 }
 
-<div class="row">
-    @foreach (var products in Model)
-    {
-        <div class="col-3 mb-3">
-            <div class="card shadow">
-                <img class="card-img-top product-img" src="@products.PhotoPath">
-                <div class="card-body text-center">
-                    <a class="text-success"
-                       asp-controller="Product"
-                       asp-action="Index"
-                       asp-route-id="@products.Id">
-                        <h5>@products.Name</h5>
-                    </a>
-                    <h2 class="text-danger">@products.Cost.ToString("c")</h2>
-                    <a class="btn btn-success mt-3" 
-                       asp-controller="Cart"
-                       asp-action="Add"
-                       asp-route-productId="@products.Id">Добавить в корзину</a>
-                    <a class="btn btn-outline-success" 
-                       asp-controller="Favorite"
-                       asp-action="Add"
-                       asp-route-productId="@products.Id">Добавить в избранное</a>
-                </div>
-            </div>
-        </div>
-        // <p>@products.Id @products.Name @products.Cost</p>
-    }
+@await Html.PartialAsync("SearchBlock")
+
+<div class="text-center text-uppercase text-success mb-5 mt-5">
+    <h2 class="row-title">Каталог товаров</h2>
+</div>
+
+<div class="row mt-3">
+    @await Html.PartialAsync("ProductsCatalog", @Model)
 </div>

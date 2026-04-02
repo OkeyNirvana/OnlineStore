@@ -39,4 +39,15 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    public IActionResult Search(string query)
+    {
+        if (query == null)
+        {
+            return View();
+        }
+
+        var products = _repositoryProduct.Search(query);
+        return View(products);
+    }
 }

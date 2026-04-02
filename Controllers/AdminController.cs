@@ -49,5 +49,17 @@ namespace HobbyGarage.Controllers;
         _repositoryProduct.DeleteProduct(id);
         return RedirectToAction("Products");
       }
+
+      public IActionResult UpdateProduct(int id)
+      {
+        var existingProduct = _repositoryProduct.TryGetById(id);
+        return View(existingProduct);
+      }
+      [HttpPost]
+      public IActionResult UpdateProduct(Product product)
+      {
+        _repositoryProduct.UpdateProduct(product);
+        return RedirectToAction("Products");
+      }
     }
     

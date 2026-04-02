@@ -9,6 +9,8 @@ namespace HobbyGarage.Repository
     public Product TryGetById(int id);
     public void Add(Product product);
     public void DeleteProduct(int productid);
+    public void UpdateProduct(Product product);
+    public List<Product> Search(string text);
   }
   public class RepositoryProduct : IRepositoryProduct
   {
@@ -48,6 +50,24 @@ namespace HobbyGarage.Repository
     {
       var product = TryGetById(productid);
       _products.Remove(product);
+    }
+
+    public void UpdateProduct(Product product)
+    {
+      var existingProduct = TryGetById(product.Id);
+      if (existingProduct != null)
+      {
+        existingProduct.Name = product.Name;
+        existingProduct.Cost = product.Cost;
+        existingProduct.Description = product.Description;
+      }
+      
+    }
+
+    public List<Product> Search(string text)
+    {
+      var products = GetAll().Where(products => products.Name!.Contains(text, StringComparison.OrdinalIgnoreCase));
+      return products.ToList() ?? [];
     }
   }
 }
