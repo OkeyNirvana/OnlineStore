@@ -19,10 +19,14 @@
                        asp-controller="Cart"
                        asp-action="Add"
                        asp-route-productId="@products.Id">Добавить в корзину</a>
-                    <a class="btn btn-outline-success"
+                    <a class="btn btn-outline-success mt-3"
                        asp-controller="Favorite"
                        asp-action="Add"
                        asp-route-productId="@products.Id">Добавить в избранное</a>
+                    <a class="btn btn-success mt-3"
+                       asp-controller="Сomparison"
+                       asp-action="Add"
+                       asp-route-productId="@products.Id">Сравнить товары</a>
                 </div>
             </div>
         </div>

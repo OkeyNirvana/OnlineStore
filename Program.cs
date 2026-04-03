@@ -10,6 +10,7 @@ builder.Services.AddSingleton<IRepositoryProduct, RepositoryProduct>();
 builder.Services.AddSingleton<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 builder.Services.AddSingleton<IFavoriteRepository, FavoriteRepository>();
+builder.Services.AddSingleton<IComparisonRepository, ComparisonRepository>();
 
 var app = builder.Build();
 
